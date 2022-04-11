@@ -1,0 +1,126 @@
+<div class="ui segment h100">
+
+    <table class="ui very compact table">
+        <thead>
+            <tr class="center aligned">
+                <th colspan="2">Konfigurasi Telnet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="center aligned">
+                <td>
+                    <div class="ui labeled fluid input ">
+                        <div class="ui black label">
+                            Konfigurasi IP
+                        </div>
+                        <input ng-model="srcIP" type="text" placeholder="192.168.xxx.xxx">
+                    </div>
+                </td>
+
+                <td>
+                    <div class="ui labeled fluid input ">
+                        <div class="ui black label">
+                            Konfigurasi Port
+                        </div>
+                        <input ng-model="srcPort" type="number" min="1025" max="65535" placeholder="default 42474">
+                    </div>
+                </td>
+                                               
+            </tr>
+        </tbody>
+    </table>
+    <table class="ui very compact table">
+        <thead>
+            <tr class="center aligned">
+                <th colspan="8">Kostumisasi Perijinan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="center aligned">
+                <td>
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="Permissions1" value="CameraPer">
+                        <label>Kamera</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="Permissions2" value="StoragePer">
+                        <label>Penyimpanan</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="Permissions3" value="MicPer">
+                        <label>Microphone</label>
+                    </div>
+                </td> 
+                <td>
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="Permissions4" value="LocationPer">
+                        <label>Lokasi</label>
+                    </div>
+                </td> 
+                <td>
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="Permissions5" value="ContactsPer">
+                        <label>Kontak</label>
+                    </div>
+                </td> 
+                <td>
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="Permissions6" value="SMSPer">
+                        <label>SMS</label>
+                    </div>
+                </td> 
+                <td>
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="Permissions7" value="CallsLogsPer">
+                        <label>Riwayat Telepon</label>
+                    </div>
+                </td> 
+            </tr>
+        </tbody>
+    </table>    
+    <table class="ui very compact table">
+        <thead>
+            <tr class="center aligned">
+                <th colspan="3">
+                    <div class="ui checkbox ">
+                        <input ng-model="bindApk.enable" type="checkbox" name="bind">
+                        <label>Menyisipkan Menggunakan APK Asli</label>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-hide="!bindApk.enable">
+            <tr class="center aligned">
+                <td>
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="method" checked="checked" ng-model="bindApk.method" value="BOOT">
+                        <label>Saat booting(disarankan)</label>
+                        <span style="font-size:= 10px ;color: red">Perangkat Harus Di Restart</span>
+                    </div>
+                </td>
+                <td>
+                    <button ng-click="BrowseApk()" ng-disabled="!bindApk.enable" class="ui black labeled icon button "><i class="folder open icon" ></i>Browse Apk</button><button ng-click="BrowseFolder()" ng-disabled="!bindApk.enable" class="ui black labeled icon button "><i class="folder open icon" ></i>Browse Folder</button>
+                    </td>
+                <td>
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="method" ng-model="bindApk.method" value="ACTIVITY">
+                        <label>Saat Aplikasi Diluncurkan Saja</label>
+                        <span style="font-size: 14px ;color: red">Tidak berfungsi disemua aplikasi</span>
+                    </div>
+                </td>
+        </tbody>
+        <tfoot class="half-width">
+            <tr class="center aligned">
+                <th colspan="3">
+                    <button ng-click="Build(srcIP,srcPort)" ng-hide="bindApk.enable" ng-show="Build" class="ui labeled icon red button"><i class="lightning icon" ></i>Build</button>
+                    <button ng-click="Build(srcIP,srcPort)" ng-hide="Build" ng-show=bindApk.enable class="ui labeled icon green button"><i class="lab icon" ></i>Bind</button>
+                    <button ng-click="Rebuild(path)" ng-hide="Build" ng-show=bindApk.enable class="ui labeled icon white button"><i class="refresh icon" ></i>Retry</button>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
